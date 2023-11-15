@@ -1,9 +1,9 @@
 import Link from "next/link"
 
-export default function Home() {
+export default function AboutUs() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Link href={"/aboutus"}>About</Link>
+      <Link href={"/"}>Home</Link>
     </main>
   )
 }
