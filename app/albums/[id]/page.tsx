@@ -47,7 +47,7 @@ export default async function AlbumDetails({ params }: Props) {
         <h2 className="text-2xl font-bold">Songs</h2>
         <ul className="divide-y divide-gray-700">
           {album?.songs?.map((song: Song) => {
-            return <SongListingItem song={song} />;
+            return <SongListingItem key={song.name} song={song} />;
           })}
         </ul>
 
