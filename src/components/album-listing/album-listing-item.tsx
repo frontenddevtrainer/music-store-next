@@ -20,7 +20,7 @@ export default function AlbumListingItem({ album } : Props) {
 
       <div className="text-left">
         <h3 className="text-md font-bold mb-1">{album?.name}</h3>
-        <p className="text-sm mb-2 text-gray-400">By {album?.singers.join(", ")}</p>
+        <p className="text-sm mb-2 text-gray-400">By {album?.singers?.join(", ")}</p>
         <p className="text-sm mb-2 text-green-200">${album?.price}</p>
 
         <a
