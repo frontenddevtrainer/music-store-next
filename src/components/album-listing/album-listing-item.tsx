@@ -9,7 +9,7 @@ export default function AlbumListingItem({ album } : Props) {
     <div className="bg-gray-800 p-4 rounded relative">
       <div className="relative">
         <img
-          src={album.albumArt.thumbnail}
+          src={album?.albumArt?.thumbnail}
           alt="Album"
           className="w-full rounded mb-2"
         />
@@ -19,9 +19,9 @@ export default function AlbumListingItem({ album } : Props) {
       </div>
 
       <div className="text-left">
-        <h3 className="text-md font-bold mb-1">{album.name}</h3>
-        <p className="text-sm mb-2 text-gray-400">By {album.singers.join(", ")}</p>
-        <p className="text-sm mb-2 text-green-200">${album.price}</p>
+        <h3 className="text-md font-bold mb-1">{album?.name}</h3>
+        <p className="text-sm mb-2 text-gray-400">By {album?.singers.join(", ")}</p>
+        <p className="text-sm mb-2 text-green-200">${album?.price}</p>
 
         <a
           href="#"
