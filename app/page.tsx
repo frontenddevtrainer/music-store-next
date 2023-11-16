@@ -1,9 +1,10 @@
-import Link from "next/link"
+import Banner from "@/src/components/banner/banner";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Link href={"/aboutus"}>About</Link>
+    <main className="container mx-auto p-8">
+      <Banner />
     </main>
-  )
+  );
 }
