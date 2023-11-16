@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "npm run start:api && next start",
     "lint": "next lint",
     "start:api": "json-server ./mock-api/db.json --watch --delay=1000 -r ./mock-api/routes.json -p 3600"
   },
