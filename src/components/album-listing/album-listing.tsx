@@ -27,7 +27,7 @@ export default async function AlbumListing({ heading, source }: Props) {
       <div className="grid grid-cols-5 gap-4">
         {
             data.map((album: Album)=>{
-                return <AlbumListingItem album={album}/>
+                return <AlbumListingItem key={album.id} album={album}/>
             })
         }
       </div>
