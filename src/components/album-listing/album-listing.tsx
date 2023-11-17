@@ -1,35 +1,37 @@
+"use client";
+
 import { Album } from "@/src/interfaces/Album";
 import AlbumListingItem from "./album-listing-item";
+import { useEffect, useState } from "react";
 
 interface Props {
   heading: string;
-  source : string
+  source: string;
 }
 
-async function getAlbumData(url: string) {
-  const response = await fetch(url);
+export default function AlbumListing({ heading, source }: Props) {
+  const [data, setData] = useState([]);
 
-  if (!response.ok) {
-    throw new Error("Unable to fetch data");
-  }
+  useEffect(() => {
+    async function getAlbumData(url: string) {
+      const response = await fetch(url, { next: { revalidate: 30 } });
 
-  return response.json();
-}
+      if (!response.ok) {
+        throw new Error("Unable to fetch data");
+      }
+      setData(await response.json());
+    }
 
-export default async function AlbumListing({ heading, source }: Props) {
-  const data = await getAlbumData(source);
-
-  console.log(data);
+    getAlbumData(source);
+  }, []);
 
   return (
     <section className="mb-12">
       <h2 className="text-3xl text-green-400 mb-4">{heading}</h2>
       <div className="grid grid-cols-5 gap-4">
-        {
-            data.map((album: Album)=>{
-                return <AlbumListingItem key={album.id} album={album}/>
-            })
-        }
+        {data.map((album: Album) => {
+          return <AlbumListingItem key={album.id} album={album} />;
+        })}
       </div>
     </section>
   );
