@@ -1,16 +1,17 @@
-'use client'
+"use client";
 
 import { Album } from "@/src/interfaces/Album";
 import Link from "next/link";
 import { useState } from "react";
+import { container } from "./styles";
+import "./style.scss";
 
 interface Props {
   album: Album;
 }
 
 export default function AlbumListingItem({ album }: Props) {
-
-  const [hideButton, setHideButton] = useState(false)
+  const [hideButton, setHideButton] = useState(false);
 
   return (
     <div className="bg-gray-800 p-4 rounded relative container">
@@ -20,9 +21,16 @@ export default function AlbumListingItem({ album }: Props) {
           alt="Album"
           className="w-full rounded mb-2"
         />
-        {!hideButton && <button onClick={()=>{ setHideButton(true) }} className="absolute bottom-2 right-2 bg-green-400 w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-300">
-          <span className="material-icons text-white"> play_arrow </span>
-        </button>}
+        {!hideButton && (
+          <button
+            onClick={() => {
+              setHideButton(true);
+            }}
+            className="absolute bottom-2 right-2 bg-green-400 w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-300"
+          >
+            <span className="material-icons text-white"> play_arrow </span>
+          </button>
+        )}
       </div>
 
       <div className="text-left">
@@ -44,9 +52,7 @@ export default function AlbumListingItem({ album }: Props) {
       </div>
       <style jsx>
         {`
-          .container {
-            border: 1px solid ${album.id % 2 === 0 ? "red" : "blue"};
-          }
+          @import "./style.scss";
         `}
       </style>
     </div>
