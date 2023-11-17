@@ -1,27 +1,37 @@
+'use client'
+
 import { Album } from "@/src/interfaces/Album";
 import Link from "next/link";
+import { useState } from "react";
 
 interface Props {
-    album : Album
+  album: Album;
 }
 
-export default function AlbumListingItem({ album } : Props) {
+export default function AlbumListingItem({ album }: Props) {
+
+  const [hideButton, setHideButton] = useState(false)
+
   return (
-    <div className="bg-gray-800 p-4 rounded relative">
+    <div className="bg-gray-800 p-4 rounded relative container">
       <div className="relative">
         <img
           src={album?.albumArt?.thumbnail}
           alt="Album"
           className="w-full rounded mb-2"
         />
-        <button className="absolute bottom-2 right-2 bg-green-400 w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-300">
+        {!hideButton && <button onClick={()=>{ setHideButton(true) }} className="absolute bottom-2 right-2 bg-green-400 w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-300">
           <span className="material-icons text-white"> play_arrow </span>
-        </button>
+        </button>}
       </div>
 
       <div className="text-left">
-        <h3 className="text-md font-bold mb-1"><Link href={`/albums/${album.id}`} >{album?.name}</Link></h3>
-        <p className="text-sm mb-2 text-gray-400">By {album?.singers?.join(", ")}</p>
+        <h3 className="text-md font-bold mb-1">
+          <Link href={`/albums/${album.id}`}>{album?.name}</Link>
+        </h3>
+        <p className="text-sm mb-2 text-gray-400">
+          By {album?.singers?.join(", ")}
+        </p>
         <p className="text-sm mb-2 text-green-200">${album?.price}</p>
 
         <a
@@ -32,6 +42,13 @@ export default function AlbumListingItem({ album } : Props) {
           <span className="ml-1">Add to Cart</span>
         </a>
       </div>
+      <style jsx>
+        {`
+          .container {
+            border: 1px solid ${album.id % 2 === 0 ? "red" : "blue"};
+          }
+        `}
+      </style>
     </div>
   );
 }
