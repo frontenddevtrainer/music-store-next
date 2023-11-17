@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "start:api": "json-server ./mock-api/db.json --watch --delay=1000 -r ./mock-api/routes.json -p 3600"
+    "start:api": "json-server ./mock-api/db.json --watch --delay=3000 -r ./mock-api/routes.json -p 3600"
   },
   "dependencies": {
     "next": "14.0.2",

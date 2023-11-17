@@ -1,29 +1,25 @@
-"use client";
-
 import { Album } from "@/src/interfaces/Album";
 import AlbumListingItem from "./album-listing-item";
-import { useEffect, useState } from "react";
 
 interface Props {
   heading: string;
   source: string;
 }
 
-export default function AlbumListing({ heading, source }: Props) {
-  const [data, setData] = useState([]);
+async function getAlbumData(url: string) {
+  const response = await fetch(url, { cache: "force-cache" });
 
-  useEffect(() => {
-    async function getAlbumData(url: string) {
-      const response = await fetch(url, { next: { revalidate: 30 } });
+  if (!response.ok) {
+    throw new Error("Unable to fetch data");
+  }
 
-      if (!response.ok) {
-        throw new Error("Unable to fetch data");
-      }
-      setData(await response.json());
-    }
+  return response.json();
+}
 
-    getAlbumData(source);
-  }, []);
+export default async function AlbumListing({ heading, source }: Props) {
+  const data = await getAlbumData(source);
+
+  console.log(data);
 
   return (
     <section className="mb-12">
